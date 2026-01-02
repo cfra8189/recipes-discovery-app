@@ -1,14 +1,77 @@
+@font-face {
+  font-family: 'Chicago';
+  src: url('./assets/font/ChicagoFLF.ttf') format('truetype');
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Chicago', system-ui, monospace;
   line-height: 1.5;
   font-weight: 400;
+  font-size: 14px;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --light-bg: #ffffff;
+  --light-fg: #000000;
+  --light-border-light: #ffffff;
+  --light-border-dark: #000000;
+  --light-gray: #c0c0c0;
+  --light-bg-image: url('./assets/light-recipe.gif');
+  --light-overlay: rgba(255, 255, 255, 0.7);
+
+  --dark-bg: #000000;
+  --dark-fg: #ffffff;
+  --dark-border-light: #808080;
+  --dark-border-dark: #ffffff;
+  --dark-gray: #404040;
+  --dark-bg-image: url('./assets/dark-recipe.gif');
+  --dark-overlay: rgba(0, 0, 0, 0.75);
+
+  --current-bg: var(--light-bg);
+  --current-fg: var(--light-fg);
+  --current-border-light: var(--light-border-light);
+  --current-border-dark: var(--light-border-dark);
+  --current-gray: var(--light-gray);
+  --current-bg-image: var(--light-bg-image);
+  --current-overlay: var(--light-overlay);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body.dark-mode {
+  --current-bg: var(--dark-bg);
+  --current-fg: var(--dark-fg);
+  --current-border-light: var(--dark-border-light);
+  --current-border-dark: var(--dark-border-dark);
+  --current-gray: var(--dark-gray);
+  --current-bg-image: var(--dark-bg-image);
+  --current-overlay: var(--dark-overlay);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  background-color: var(--current-bg);
+  background-image: var(--current-bg-image);
+  background-size: cover;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  color: var(--current-fg);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: var(--current-overlay);
+  z-index: 0;
 }
